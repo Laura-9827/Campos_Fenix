@@ -118,9 +118,10 @@ h2 { font-size:20px; font-weight:normal; margin-bottom:20px; color:#333; }
       <span class="alert-icon" style="color:#e65c00;">&#9888;</span>
       <div style="width:100%">
         <strong>Aten&#231;&#227;o</strong> &#8212; no momento de registo de tema da sua disserta&#231;&#227;o, indicou que o seu estudo envolvia a recolha de dados com participantes. J&#225; submeteu o pedido de parecer &#224; Comiss&#227;o de &#201;tica da sua Escola?
-        <div class="radio-group" style="margin-top:10px;">
+        <div class="radio-group" style="margin-top:10px; flex-direction:column; align-items:flex-start;">
           <label class="radio-label"><input type="radio" name="top_parecer" id="top-parecer-sim" value="sim"> Sim</label>
-          <label class="radio-label"><input type="radio" name="top_parecer" id="top-parecer-nao" value="nao"> N&#227;o</label>
+          <label class="radio-label"><input type="radio" name="top_parecer" id="top-parecer-nao" value="nao"> N&#227;o, ainda n&#227;o submeti o pedido de parecer</label>
+          <label class="radio-label"><input type="radio" name="top_parecer" id="top-parecer-nao-estudo" value="nao-estudo"> N&#227;o, o meu estudo n&#227;o envolve recolha de dados com participantes</label>
         </div>
         <!-- Sim: j&#225; submeteu -->
         <div class="sub-section" id="top-sub-sim">
@@ -138,11 +139,11 @@ h2 { font-size:20px; font-weight:normal; margin-bottom:20px; color:#333; }
             <label>Comiss&#227;o de &#201;tica da Escola para onde foi enviado o pedido:</label>
             <select id="top-comissao">
               <option value="">-- Selecione a sua Escola --</option>
-              <option value="ECSH">Comiss&#245;es de &#201;tica da ECSH</option>
-              <option value="Sintra">Comiss&#227;o de &#201;tica da Escola de Sintra</option>
-              <option value="ISTA">Comiss&#227;o de &#201;tica da ISTA</option>
-              <option value="IBS">Comiss&#227;o de &#201;tica da IBS</option>
-              <option value="ESPP">Comiss&#227;o de &#201;tica da ESPP</option>
+              <option value="ECSH">Escola de Ci&#234;ncias Sociais e Humanas (ECSH)</option>
+              <option value="Sintra">Escola de Tecnologias Digitais Aplicadas (Escola de Sintra)</option>
+              <option value="ISTA">Escola de Tecnologias e Arquitetura (ISTA)</option>
+              <option value="IBS">Escola de Gest&#227;o (IBS)</option>
+              <option value="ESPP">Escola de Sociologia e Pol&#237;ticas P&#250;blicas (ESPP)</option>
             </select>
           </div>
           <div style="margin-top:14px;padding-top:12px;border-top:1px solid #ffb74d;">
@@ -164,18 +165,15 @@ h2 { font-size:20px; font-weight:normal; margin-bottom:20px; color:#333; }
           <br><br>
           Para o efeito, deve preencher o formul&#225;rio de submiss&#227;o dispon&#237;vel na &#225;rea da Comiss&#227;o de &#201;tica da sua Escola:
           <div class="escola-selector">
-            <label>Selecione a Comiss&#227;o de &#201;tica da sua Escola:</label>
+            <label>Selecione a sua Escola</label>
             <select onchange="abrirLink(this)">
               <option value="">-- Selecione a sua Escola --</option>
-              <option value="https://www.iscte-iul.pt/iscte/escolas/escola-ciencias-sociais-humanas/comissoes-de-etica">Comiss&#245;es de &#201;tica da ECSH</option>
-              <option value="">Comiss&#227;o de &#201;tica da Escola de Sintra (link em breve)</option>
-              <option value="https://www.iscte-iul.pt/conteudos/iscte/escolas/tecnologias-arquitetura/comissao-de-etica/2614/apresentacao">Comiss&#227;o de &#201;tica da ISTA</option>
-              <option value="https://ibs.iscte-iul.pt/conteudos/escola/organizacao/1523/comissoes">Comiss&#227;o de &#201;tica da IBS</option>
-              <option value="https://www.iscte-iul.pt/iscte/escolas/escola-sociologia-politicas-publicas/comissao-de-etica-6360">Comiss&#227;o de &#201;tica da ESPP</option>
+              <option value="https://www.iscte-iul.pt/iscte/escolas/escola-ciencias-sociais-humanas/comissoes-de-etica">Escola de Ci&#234;ncias Sociais e Humanas (ECSH)</option>
+              <option value="">Escola de Tecnologias Digitais Aplicadas (Escola de Sintra)</option>
+              <option value="https://www.iscte-iul.pt/conteudos/iscte/escolas/tecnologias-arquitetura/comissao-de-etica/2614/apresentacao">Escola de Tecnologias e Arquitetura (ISTA)</option>
+              <option value="https://ibs.iscte-iul.pt/conteudos/escola/organizacao/1523/comissoes">Escola de Gest&#227;o (IBS)</option>
+              <option value="https://www.iscte-iul.pt/iscte/escolas/escola-sociologia-politicas-publicas/comissao-de-etica-6360">Escola de Sociologia e Pol&#237;ticas P&#250;blicas (ESPP)</option>
             </select>
-          </div>
-          <div class="ethics-note-orange">
-            Para mais informa&#231;&#227;o, consulte o <a href="https://www.iscte-iul.pt/assets/files/2022/01/24/1643044824553_Co_digo_de_Conduta_E_tica_na_Investigac_a_o_ISCTE.pdf" target="_blank">C&#243;digo de Conduta &#201;tica na Investiga&#231;&#227;o do Iscte</a>.
           </div>
         </div>
       </div>
@@ -198,18 +196,15 @@ h2 { font-size:20px; font-weight:normal; margin-bottom:20px; color:#333; }
           <br><br>
           Para o efeito, deve preencher o formul&#225;rio de submiss&#227;o dispon&#237;vel na &#225;rea da Comiss&#227;o de &#201;tica da sua Escola:
           <div class="escola-selector">
-            <label>Selecione a Comiss&#227;o de &#201;tica da sua Escola:</label>
+            <label>Selecione a sua Escola</label>
             <select onchange="abrirLink(this)">
               <option value="">-- Selecione a sua Escola --</option>
-              <option value="https://www.iscte-iul.pt/iscte/escolas/escola-ciencias-sociais-humanas/comissoes-de-etica">Comiss&#245;es de &#201;tica da ECSH</option>
-              <option value="">Comiss&#227;o de &#201;tica da Escola de Sintra (link em breve)</option>
-              <option value="https://www.iscte-iul.pt/conteudos/iscte/escolas/tecnologias-arquitetura/comissao-de-etica/2614/apresentacao">Comiss&#227;o de &#201;tica da ISTA</option>
-              <option value="https://ibs.iscte-iul.pt/conteudos/escola/organizacao/1523/comissoes">Comiss&#227;o de &#201;tica da IBS</option>
-              <option value="https://www.iscte-iul.pt/iscte/escolas/escola-sociologia-politicas-publicas/comissao-de-etica-6360">Comiss&#227;o de &#201;tica da ESPP</option>
+              <option value="https://www.iscte-iul.pt/iscte/escolas/escola-ciencias-sociais-humanas/comissoes-de-etica">Escola de Ci&#234;ncias Sociais e Humanas (ECSH)</option>
+              <option value="">Escola de Tecnologias Digitais Aplicadas (Escola de Sintra)</option>
+              <option value="https://www.iscte-iul.pt/conteudos/iscte/escolas/tecnologias-arquitetura/comissao-de-etica/2614/apresentacao">Escola de Tecnologias e Arquitetura (ISTA)</option>
+              <option value="https://ibs.iscte-iul.pt/conteudos/escola/organizacao/1523/comissoes">Escola de Gest&#227;o (IBS)</option>
+              <option value="https://www.iscte-iul.pt/iscte/escolas/escola-sociologia-politicas-publicas/comissao-de-etica-6360">Escola de Sociologia e Pol&#237;ticas P&#250;blicas (ESPP)</option>
             </select>
-          </div>
-          <div class="ethics-note-orange">
-            Para mais informa&#231;&#227;o, consulte o <a href="https://www.iscte-iul.pt/assets/files/2022/01/24/1643044824553_Co_digo_de_Conduta_E_tica_na_Investigac_a_o_ISCTE.pdf" target="_blank">C&#243;digo de Conduta &#201;tica na Investiga&#231;&#227;o do Iscte</a>.
           </div>
         </div>
       </div>
@@ -310,18 +305,18 @@ h2 { font-size:20px; font-weight:normal; margin-bottom:20px; color:#333; }
               <br><br>
               Para o efeito, deve preencher o formul&#225;rio de submiss&#227;o dispon&#237;vel na &#225;rea da Comiss&#227;o de &#201;tica da sua Escola:
               <div class="escola-selector">
-                <label>Selecione a Comiss&#227;o de &#201;tica da sua Escola:</label>
+                <label>Selecione a sua Escola</label>
                 <select onchange="abrirLink(this)">
                   <option value="">-- Selecione a sua Escola --</option>
-                  <option value="https://www.iscte-iul.pt/iscte/escolas/escola-ciencias-sociais-humanas/comissoes-de-etica">Comiss&#245;es de &#201;tica da ECSH</option>
-                  <option value="">Comiss&#227;o de &#201;tica da Escola de Sintra (link em breve)</option>
-                  <option value="https://www.iscte-iul.pt/conteudos/iscte/escolas/tecnologias-arquitetura/comissao-de-etica/2614/apresentacao">Comiss&#227;o de &#201;tica da ISTA</option>
-                  <option value="https://ibs.iscte-iul.pt/conteudos/escola/organizacao/1523/comissoes">Comiss&#227;o de &#201;tica da IBS</option>
-                  <option value="https://www.iscte-iul.pt/iscte/escolas/escola-sociologia-politicas-publicas/comissao-de-etica-6360">Comiss&#227;o de &#201;tica da ESPP</option>
+                  <option value="https://www.iscte-iul.pt/iscte/escolas/escola-ciencias-sociais-humanas/comissoes-de-etica">Escola de Ci&#234;ncias Sociais e Humanas (ECSH)</option>
+                  <option value="">Escola de Tecnologias Digitais Aplicadas (Escola de Sintra)</option>
+                  <option value="https://www.iscte-iul.pt/conteudos/iscte/escolas/tecnologias-arquitetura/comissao-de-etica/2614/apresentacao">Escola de Tecnologias e Arquitetura (ISTA)</option>
+                  <option value="https://ibs.iscte-iul.pt/conteudos/escola/organizacao/1523/comissoes">Escola de Gest&#227;o (IBS)</option>
+                  <option value="https://www.iscte-iul.pt/iscte/escolas/escola-sociologia-politicas-publicas/comissao-de-etica-6360">Escola de Sociologia e Pol&#237;ticas P&#250;blicas (ESPP)</option>
                 </select>
               </div>
               <div class="ethics-note">
-                Para mais informa&#231;&#227;o, consulte o <a href="https://www.iscte-iul.pt/assets/files/2022/01/24/1643044824553_Co_digo_de_Conduta_E_tica_na_Investigac_a_o_ISCTE.pdf" target="_blank">C&#243;digo de Conduta &#201;tica na Investiga&#231;&#227;o do Iscte</a>.
+                Lembrete: Ap&#243;s ter submetido o pedido de parecer &#224; Comiss&#227;o de &#201;tica da sua Escola, dever&#225; inseri-lo em F&#233;nix.
               </div>
             </div>
           </div>
@@ -400,6 +395,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   document.getElementById('top-parecer-nao').addEventListener('change', function() {
     hide('top-sub-sim'); show('top-sub-nao');
+  });
+  document.getElementById('top-parecer-nao-estudo').addEventListener('change', function() {
+    hide('top-sub-sim'); hide('top-sub-nao');
   });
 
   // ── Lembrete topo B: mant&#233;m resposta? ──
