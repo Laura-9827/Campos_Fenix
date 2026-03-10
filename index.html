@@ -81,6 +81,24 @@ h2 { font-size:20px; font-weight:normal; margin-bottom:20px; color:#333; }
 .Escola-selector { margin-top:10px; }
 .Escola-selector label { display:block; font-size:12px; color:#555; margin-bottom:6px; }
 .Escola-selector select { width:100%; max-width:500px; padding:6px 10px; border:1px solid #ccc; border-radius:3px; font-size:12px; color:#333; background:white; cursor:pointer; }
+/* Tab panels */
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+/* Ethics sub-section fields */
+.ethics-sub-fields { display:none; margin-top:16px; padding:15px; background:#f9f9ff; border:1px solid #d0d8f0; border-radius:4px; }
+.ethics-sub-fields.visible { display:block; }
+.ethics-sub-section-title { font-size:13px; font-weight:bold; color:#003366; margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid #d0d8f0; }
+.ethics-sub-group { margin-bottom:18px; }
+.ethics-sub-group:last-child { margin-bottom:0; }
+/* Attention banner inside tab */
+.attention-banner { display:none; margin-top:14px; background:#fff3e0; border:1px solid #ffb74d; border-left:4px solid #e65c00; border-radius:4px; padding:13px 16px; font-size:13px; color:#333; line-height:1.6; max-width:700px; }
+.attention-banner.visible { display:block; }
+/* No-participants change box */
+.change-status-box { display:none; margin-top:12px; background:#f5f5f5; border:1px solid #ccc; border-radius:4px; padding:12px 15px; font-size:13px; color:#333; cursor:pointer; max-width:700px; }
+.change-status-box.visible { display:block; }
+.change-status-box:hover { background:#ebebeb; }
+.change-status-inner { display:flex; align-items:center; gap:10px; }
+.change-status-checkbox { width:16px; height:16px; cursor:pointer; accent-color:#003366; flex-shrink:0; }
 </style>
 </head>
 <body>
@@ -220,9 +238,10 @@ h2 { font-size:20px; font-weight:normal; margin-bottom:20px; color:#333; }
   </div>
 
   <div class="tabs">
-    <div class="tab active">Registo tema</div>
-    <div class="tab">Orientadores</div>
-    <div class="tab">J&#250;ri</div>
+    <div class="tab active" data-tab="registo-tema">Registo tema</div>
+    <div class="tab" data-tab="aprovacao-etica">Aprova&#231;&#227;o &#201;tica</div>
+    <div class="tab" data-tab="orientadores">Orientadores</div>
+    <div class="tab" data-tab="juri">J&#250;ri</div>
     <div class="tab">Data de conclus&#227;o</div>
     <div class="tab">Objetivos desenvolvimento sustent&#225;vel</div>
     <div class="tab">Declara&#231;&#227;o Reposit&#243;rio ISCTE-IUL</div>
@@ -235,6 +254,11 @@ h2 { font-size:20px; font-weight:normal; margin-bottom:20px; color:#333; }
   </div>
 
   <div class="tab-content">
+
+    <!-- ══════════════════════════════════════════════
+         PAINEL: Registo tema
+    ══════════════════════════════════════════════ -->
+    <div class="tab-panel active" id="panel-registo-tema">
     <div class="separator-note">Separador dispon&#237;vel desde &#8220;Pendente de aceita&#231;&#227;o pelo orientador&#8221; por imthf&#64;iscte-iul.pt em 27-11-2020 14:59</div>
 
     <div class="form-row">
@@ -278,92 +302,148 @@ h2 { font-size:20px; font-weight:normal; margin-bottom:20px; color:#333; }
       </div>
     </div>
 
-    <!-- CAMPO 1: Recolha de dados -->
-    <div class="form-row new-field">
-      <div class="form-label">
-        <div class="info-wrap">
-          <span>O seu estudo envolve recolha de dados com participantes?</span>
-          <span class="info-icon" id="btn-info-etica" title="Mais informa&#231;&#227;o">i</span>
+    </div><!-- /panel-registo-tema -->
+
+    <!-- ══════════════════════════════════════════════
+         PAINEL: Aprovação Ética
+    ══════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel-aprovacao-etica">
+
+      <!-- ATENÇÃO: só aparece quando houve resposta SIM no momento de registo e ainda não submeteu parecer -->
+      <div class="attention-banner" id="etica-attention-banner">
+        <div class="alert-inner">
+          <span class="alert-icon" style="color:#e65c00;">&#9888;</span>
+          <div>
+            <strong>Aten&#231;&#227;o &#8212; no momento de registo de tema, indicou que o seu estudo envolvia a recolha de dados com participantes. Contudo, ainda n&#227;o submeteu o pedido de parecer &#224; Comiss&#227;o de &#201;tica da sua Escola em F&#233;nix+. Queira, por favor, inserir a informa&#231;&#227;o em falta.</strong>
+          </div>
         </div>
       </div>
-      <div class="form-value">
-        <div class="radio-group">
-          <label class="radio-label"><input type="radio" name="recolha_dados" id="etica-sim" value="sim"> Sim</label>
-          <label class="radio-label"><input type="radio" name="recolha_dados" id="etica-nao" value="nao"> N&#227;o</label>
-        </div>
 
-        <div class="info-box" id="info-etica">
-          <p>A aprova&#231;&#227;o &#233;tica &#233; encarada como parte fundamental do processo de investiga&#231;&#227;o, e n&#227;o apenas como um requisito para fazer investiga&#231;&#227;o de qualidade. A aprova&#231;&#227;o &#233;tica promove a prote&#231;&#227;o dos/as participantes, dos/as investigadores/as, e a integridade da produ&#231;&#227;o cient&#237;fica. Adicionalmente, &#233; muitas vezes condi&#231;&#227;o necess&#225;ria para a obten&#231;&#227;o de financiamento, e muitas publica&#231;&#245;es cient&#237;ficas n&#227;o aceitam publicar resultados de estudos que n&#227;o obtiveram aprova&#231;&#227;o &#233;tica.</p>
-          <p><strong>Os estudos que envolvam recolha de dados com participantes s&#227;o eleg&#237;veis para aprova&#231;&#227;o &#233;tica no Iscte.</strong> Os estudos que n&#227;o envolvam participantes, que recorram apenas a dados j&#225; dispon&#237;veis em bases de dados p&#250;blicas, ou que tenham obtido aprova&#231;&#227;o &#233;tica por outra entidade, dispensam aprova&#231;&#227;o &#233;tica pelo Iscte.</p>
+      <!-- CAMPO 1: Recolha de dados com participantes -->
+      <div class="form-row new-field" style="margin-top:14px;">
+        <div class="form-label" style="width:280px;">
+          <div class="info-wrap">
+            <span>O seu estudo envolve recolha de dados com participantes?</span>
+            <span class="info-icon" id="btn-info-etica" title="Mais informa&#231;&#227;o">i</span>
+          </div>
         </div>
+        <div class="form-value">
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="recolha_dados" id="etica-sim" value="sim"> Sim</label>
+            <label class="radio-label"><input type="radio" name="recolha_dados" id="etica-nao" value="nao"> N&#227;o</label>
+          </div>
 
-        <div class="alert-box yellow" id="warning-etica">
-          <div class="alert-inner">
-            <span class="alert-icon">&#9888;</span>
-            <div>
-              <strong>Aten&#231;&#227;o</strong> &#8212; o seu estudo &#233; eleg&#237;vel para aprova&#231;&#227;o &#233;tica, pelo que &#233; necess&#225;rio submeter um pedido de parecer e obter o parecer da Comiss&#227;o de &#201;tica da sua Escola, <strong>antes de iniciar o processo de recolha de dados.</strong>
-              <br><br>
-              Para o efeito, deve preencher o formul&#225;rio de submiss&#227;o dispon&#237;vel na &#225;rea da Comiss&#227;o de &#201;tica da sua Escola:
-              <div class="escola-selector">
-                <label>Selecione a sua Escola</label>
-                <select onchange="abrirLink(this)">
+          <div class="info-box" id="info-etica">
+            <p>A aprova&#231;&#227;o &#233;tica &#233; encarada como parte fundamental do processo de investiga&#231;&#227;o, e n&#227;o apenas como um requisito para fazer investiga&#231;&#227;o de qualidade. A aprova&#231;&#227;o &#233;tica promove a prote&#231;&#227;o dos/as participantes, dos/as investigadores/as, e a integridade da produ&#231;&#227;o cient&#237;fica. Adicionalmente, &#233; muitas vezes condi&#231;&#227;o necess&#225;ria para a obten&#231;&#227;o de financiamento, e muitas publica&#231;&#245;es cient&#237;ficas n&#227;o aceitam publicar resultados de estudos que n&#227;o obtiveram aprova&#231;&#227;o &#233;tica.</p>
+            <p><strong>Os estudos que envolvam recolha de dados com participantes s&#227;o eleg&#237;veis para aprova&#231;&#227;o &#233;tica no Iscte.</strong> Os estudos que n&#227;o envolvam participantes, que recorram apenas a dados j&#225; dispon&#237;veis em bases de dados p&#250;blicas, ou que tenham obtido aprova&#231;&#227;o &#233;tica por outra entidade, dispensam aprova&#231;&#227;o &#233;tica pelo Iscte.</p>
+          </div>
+
+          <!-- Campos condicionais: aparecem se respondeu SIM -->
+          <div class="ethics-sub-fields" id="etica-sim-fields">
+
+            <div class="ethics-sub-group">
+              <div class="ethics-sub-section-title">1. Documentos do Pedido de Parecer</div>
+              <div class="form-field">
+                <label>PDF do pedido de parecer:</label>
+                <label class="upload-btn">
+                  &#128206; <span id="fn-pedido-pdf">Anexar PDF do pedido de parecer</span>
+                  <input type="file" id="file-pedido-pdf" accept=".pdf" style="display:none">
+                </label>
+                <span id="lnk-pedido-pdf"></span>
+              </div>
+              <div class="form-field" style="margin-top:10px;">
+                <label>Data do pedido:</label>
+                <input type="date" id="data-pedido-parecer">
+              </div>
+              <div class="form-field" style="margin-top:10px;">
+                <label>Comiss&#227;o de &#201;tica a quem endere&#231;ou o pedido:</label>
+                <select id="comissao-pedido">
                   <option value="">-- Selecione a sua Escola --</option>
-                  <option value="https://www.iscte-iul.pt/iscte/escolas/escola-ciencias-sociais-humanas/comissoes-de-etica">Escola de Ci&#234;ncias Sociais e Humanas (ECSH)</option>
-                  <option value="">Escola de Tecnologias Digitais Aplicadas (Escola de Sintra)</option>
-                  <option value="https://www.iscte-iul.pt/conteudos/iscte/escolas/tecnologias-arquitetura/comissao-de-etica/2614/apresentacao">Escola de Tecnologias e Arquitetura (ISTA)</option>
-                  <option value="https://ibs.iscte-iul.pt/conteudos/escola/organizacao/1523/comissoes">Escola de Gest&#227;o (IBS)</option>
-                  <option value="https://www.iscte-iul.pt/iscte/escolas/escola-sociologia-politicas-publicas/comissao-de-etica-6360">Escola de Sociologia e Pol&#237;ticas P&#250;blicas (ESPP)</option>
+                  <option value="ECSH">Escola de Ci&#234;ncias Sociais e Humanas (ECSH)</option>
+                  <option value="Sintra">Escola de Tecnologias Digitais Aplicadas (Escola de Sintra)</option>
+                  <option value="ISTA">Escola de Tecnologias e Arquitetura (ISTA)</option>
+                  <option value="IBS">Escola de Gest&#227;o (IBS)</option>
+                  <option value="ESPP">Escola de Sociologia e Pol&#237;ticas P&#250;blicas (ESPP)</option>
                 </select>
               </div>
-              <div class="ethics-note">
-                Lembrete: Ap&#243;s ter submetido o pedido de parecer &#224; Comiss&#227;o de &#201;tica da sua Escola, dever&#225; inseri-lo em F&#233;nix.
+              <p style="margin-top:12px;font-size:12px;color:#555;"><strong>Lembrete: Ap&#243;s ter submetido o pedido de parecer &#224; Comiss&#227;o de &#201;tica da sua Escola, dever&#225; inseri-lo em F&#233;nix+.</strong></p>
+            </div>
+
+            <div class="ethics-sub-group" style="border-top:1px solid #d0d8f0;padding-top:14px;">
+              <div class="ethics-sub-section-title">2. Documentos da Emiss&#227;o do Parecer</div>
+              <div class="form-field">
+                <label>PDF do parecer:</label>
+                <label class="upload-btn">
+                  &#128206; <span id="fn-parecer-pdf">Anexar PDF do parecer</span>
+                  <input type="file" id="file-parecer-pdf" accept=".pdf" style="display:none">
+                </label>
+                <span id="lnk-parecer-pdf"></span>
+              </div>
+              <div class="form-field" style="margin-top:10px;">
+                <label>Data da emiss&#227;o do parecer:</label>
+                <input type="date" id="data-emissao-parecer">
+              </div>
+            </div>
+
+          </div><!-- /etica-sim-fields -->
+
+          <!-- Caixa: caso o estudo já não envolva participantes -->
+          <div class="change-status-box" id="change-status-box">
+            <div class="change-status-inner">
+              <input type="checkbox" class="change-status-checkbox" id="change-status-check">
+              <label for="change-status-check" style="cursor:pointer;">Caso o seu estudo j&#225; n&#227;o envolva recolha de dados com participantes, clique aqui</label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAMPO 2: Dados pessoais -->
+      <div class="form-row new-field" style="margin-top:14px;">
+        <div class="form-label" style="width:280px;">
+          <div class="info-wrap">
+            <span>O seu estudo envolve tratamento de dados pessoais?</span>
+            <span class="info-icon" id="btn-info-dados" title="Mais informa&#231;&#227;o">i</span>
+          </div>
+        </div>
+        <div class="form-value">
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="dados_pessoais" id="dados-sim" value="sim"> Sim</label>
+            <label class="radio-label"><input type="radio" name="dados_pessoais" id="dados-nao" value="nao"> N&#227;o</label>
+          </div>
+          <div class="info-box" id="info-dados">
+            <p>Por dados pessoais entende-se qualquer informa&#231;&#227;o, de qualquer natureza e em qualquer suporte (e.g. registo de voz ou imagem), relativa a uma pessoa singular identificada ou identific&#225;vel. &#201; considerada identific&#225;vel uma pessoa singular que possa ser identificada direta ou indiretamente, por exemplo, atrav&#233;s de um nome, um n&#250;mero de identifica&#231;&#227;o, dados de localiza&#231;&#227;o, identificadores eletr&#243;nicos (e.g. IP) ou de outros elementos espec&#237;ficos da identidade f&#237;sica, fisiol&#243;gica, gen&#233;tica, mental, econ&#243;mica, cultural ou social dessa pessoa singular.</p>
+            <p>Se pretende que o seu estudo n&#227;o envolva o tratamento de dados pessoais, isto &#233;, recolha e trate exclusivamente dados an&#243;nimos, o momento do processo de anonimiza&#231;&#227;o &#233; fundamental. O facto de um estudo n&#227;o reportar respostas individuais de participantes, n&#227;o &#233; por si s&#243; indicador de n&#227;o haver tratamento de dados pessoais. Pode considerar-se que um estudo nunca trata dados pessoais apenas na condi&#231;&#227;o de que o investigador n&#227;o tenha acesso a nenhum suporte com registos de dados pessoais durante a recolha e posteriores tratamentos. Se a anonimiza&#231;&#227;o dos dados ocorrer numa fase posterior &#224; recolha de dados, por exemplo, quando o investigador remove informa&#231;&#245;es de identifica&#231;&#227;o pessoal de uma transcri&#231;&#227;o &#225;udio de uma entrevista, ou quando transfere os dados pessoais recolhidos para outra base de dados, os dados brutos ainda s&#227;o pessoais e deve indicar &#8220;sim&#8221; nesta quest&#227;o, anexando ainda o question&#225;rio sobre tratamento de dados pessoais.</p>
+          </div>
+          <div class="alert-box yellow" id="warning-dados">
+            <div class="alert-inner">
+              <span class="alert-icon">&#9888;</span>
+              <div>
+                <strong>Aten&#231;&#227;o</strong> &#8212; se o seu estudo envolve tratamento de dados pessoais, no pedido de parecer &#224; Comiss&#227;o de &#201;tica da sua Escola, dever&#225; juntar tamb&#233;m o question&#225;rio sobre tratamento de dados pessoais, dispon&#237;vel na &#225;rea web da Comiss&#227;o de &#201;tica da sua Escola.
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- CAMPO 2: Dados pessoais -->
-    <div class="form-row new-field">
-      <div class="form-label">
-        <div class="info-wrap">
-          <span>O seu estudo envolve tratamento de dados pessoais?</span>
-          <span class="info-icon" id="btn-info-dados" title="Mais informa&#231;&#227;o">i</span>
-        </div>
-      </div>
-      <div class="form-value">
-        <div class="radio-group">
-          <label class="radio-label"><input type="radio" name="dados_pessoais" id="dados-sim" value="sim"> Sim</label>
-          <label class="radio-label"><input type="radio" name="dados_pessoais" id="dados-nao" value="nao"> N&#227;o</label>
-        </div>
-        <div class="info-box" id="info-dados">
-          <p>Por dados pessoais entende-se qualquer informa&#231;&#227;o, de qualquer natureza e em qualquer suporte (e.g. registo de voz ou imagem), relativa a uma pessoa singular identificada ou identific&#225;vel. &#201; considerada identific&#225;vel uma pessoa singular que possa ser identificada direta ou indiretamente, por exemplo, atrav&#233;s de um nome, um n&#250;mero de identifica&#231;&#227;o, dados de localiza&#231;&#227;o, identificadores eletr&#243;nicos (e.g. IP) ou de outros elementos espec&#237;ficos da identidade f&#237;sica, fisiol&#243;gica, gen&#233;tica, mental, econ&#243;mica, cultural ou social dessa pessoa singular.</p>
-          <p>Se pretende que o seu estudo n&#227;o envolva o tratamento de dados pessoais, isto &#233;, recolha e trate exclusivamente dados an&#243;nimos, o momento do processo de anonimiza&#231;&#227;o &#233; fundamental. O facto de um estudo n&#227;o reportar respostas individuais de participantes, n&#227;o &#233; por si s&#243; indicador de n&#227;o haver tratamento de dados pessoais. Pode considerar-se que um estudo nunca trata dados pessoais apenas na condi&#231;&#227;o de que o investigador n&#227;o tenha acesso a nenhum suporte com registos de dados pessoais durante a recolha e posteriores tratamentos. Se a anonimiza&#231;&#227;o dos dados ocorrer numa fase posterior &#224; recolha de dados, por exemplo, quando o investigador remove informa&#231;&#245;es de identifica&#231;&#227;o pessoal de uma transcri&#231;&#227;o &#225;udio de uma entrevista, ou quando transfere os dados pessoais recolhidos para outra base de dados, os dados brutos ainda s&#227;o pessoais e deve indicar &#8220;sim&#8221; nesta quest&#227;o, anexando ainda o question&#225;rio sobre tratamento de dados pessoais.</p>
-        </div>
-        <div class="alert-box yellow" id="warning-dados">
-          <div class="alert-inner">
-            <span class="alert-icon">&#9888;</span>
-            <div>
-              <strong>Aten&#231;&#227;o</strong> &#8212; se o seu estudo envolve tratamento de dados pessoais, no pedido de parecer &#224; Comiss&#227;o de &#201;tica da sua Escola, dever&#225; juntar tamb&#233;m o question&#225;rio sobre tratamento de dados pessoais, dispon&#237;vel na &#225;rea web da Comiss&#227;o de &#201;tica da sua Escola.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </div><!-- /panel-aprovacao-etica -->
 
-  </div>
-</div>
+  </div><!-- /tab-content -->
+</div><!-- /main -->
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-  function show(id) { document.getElementById(id).style.display = 'block'; }
-  function hide(id) { document.getElementById(id).style.display = 'none'; }
-  function tog(id)  { document.getElementById(id).classList.toggle('visible'); }
+  function show(id) { var el = document.getElementById(id); if (el) el.style.display = 'block'; }
+  function hide(id) { var el = document.getElementById(id); if (el) el.style.display = 'none'; }
+  function tog(id)  { var el = document.getElementById(id); if (el) el.classList.toggle('visible'); }
+  function addClass(id, cls) { var el = document.getElementById(id); if (el) el.classList.add(cls); }
+  function removeClass(id, cls) { var el = document.getElementById(id); if (el) el.classList.remove(cls); }
 
   function setupUpload(fileId, nameId, linkId) {
-    document.getElementById(fileId).addEventListener('change', function() {
+    var el = document.getElementById(fileId);
+    if (!el) return;
+    el.addEventListener('change', function() {
       if (!this.files || !this.files[0]) return;
       var f = this.files[0];
       document.getElementById(nameId).textContent = f.name;
@@ -371,22 +451,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // ── Campo 1: recolha de dados ──
+  // ── Tab switching ──
+  var tabs = document.querySelectorAll('.tab[data-tab]');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      // deactivate all tabs
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      // hide all panels
+      document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+      var panelId = 'panel-' + this.getAttribute('data-tab');
+      var panel = document.getElementById(panelId);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  // ── Campo 1: recolha de dados com participantes ──
   document.getElementById('etica-sim').addEventListener('change', function() {
-    show('warning-etica');
+    addClass('etica-sim-fields', 'visible');
+    addClass('change-status-box', 'visible');
+    // show top reminder too
     show('top-reminder-sim');
     hide('top-reminder-nao');
     hide('top-sub-sim'); hide('top-sub-nao');
-    document.getElementById('top-parecer-sim').checked = false;
-    document.getElementById('top-parecer-nao').checked = false;
+    var ps = document.getElementById('top-parecer-sim');
+    var pn = document.getElementById('top-parecer-nao');
+    if (ps) ps.checked = false;
+    if (pn) pn.checked = false;
   });
   document.getElementById('etica-nao').addEventListener('change', function() {
-    hide('warning-etica');
+    removeClass('etica-sim-fields', 'visible');
+    removeClass('change-status-box', 'visible');
     show('top-reminder-nao');
     hide('top-reminder-sim');
+    var ms = document.getElementById('top-mantem-sim');
+    var mn = document.getElementById('top-mantem-nao');
+    if (ms) ms.checked = false;
+    if (mn) mn.checked = false;
     hide('top-sub-mantem-nao');
-    document.getElementById('top-mantem-sim').checked = false;
-    document.getElementById('top-mantem-nao').checked = false;
   });
 
   // ── Lembrete topo A: j&#225; submeteu? ──
@@ -395,6 +497,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   document.getElementById('top-parecer-nao').addEventListener('change', function() {
     hide('top-sub-sim'); show('top-sub-nao');
+    // show attention banner in ethics tab
+    addClass('etica-attention-banner', 'visible');
   });
   document.getElementById('top-parecer-nao-estudo').addEventListener('change', function() {
     hide('top-sub-sim'); hide('top-sub-nao');
@@ -416,9 +520,13 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('dados-sim').addEventListener('change', function() { show('warning-dados'); });
   document.getElementById('dados-nao').addEventListener('change', function() { hide('warning-dados'); });
 
-  // ── Uploads ──
+  // ── Uploads: top reminder ──
   setupUpload('top-file-proof',   'top-fn-proof',   'top-lnk-proof');
   setupUpload('top-file-parecer', 'top-fn-parecer', 'top-lnk-parecer');
+
+  // ── Uploads: ethics tab fields ──
+  setupUpload('file-pedido-pdf',  'fn-pedido-pdf',  'lnk-pedido-pdf');
+  setupUpload('file-parecer-pdf', 'fn-parecer-pdf', 'lnk-parecer-pdf');
 
 });
 
