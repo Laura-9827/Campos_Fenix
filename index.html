@@ -255,7 +255,7 @@ h2 { font-size:20px; font-weight:normal; margin-bottom:20px; color:#333; }
       </div>
 
       <!-- Lembrete fixo (sempre visível) -->
-      <div class="attention-banner" id="etica-attention-banner" style="display:block;">
+      <div class="attention-banner" id="etica-attention-banner" style="display:none;">
         <div class="alert-inner">
           <span class="alert-icon" style="color:#e65c00;">&#9888;</span>
           <div>
@@ -505,6 +505,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // ── Campo 1: recolha de dados com participantes ──
   document.getElementById('etica-sim').addEventListener('change', function() {
+    show('etica-attention-banner');
     show('warning-etica');
     addClass('etica-docs-pedido', 'visible');
     addClass('etica-docs-parecer', 'visible');
@@ -512,6 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateOutcome();
   });
   document.getElementById('etica-nao').addEventListener('change', function() {
+    hide('etica-attention-banner');
     hide('warning-etica');
     removeClass('etica-docs-pedido', 'visible');
     removeClass('etica-docs-parecer', 'visible');
